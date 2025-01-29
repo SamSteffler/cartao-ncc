@@ -357,7 +357,7 @@
 
         setTimeout(() => {
           loadingSpinner.style.display = 'none';
-          if (Math.random() < 0.995) { // Simulate a random error
+          if (Math.random() < 0.5) { // Simulate a random error
             errorMessage.textContent = getRandomErrorMessage();
             errorMessage.style.display = 'block';
           } else {
