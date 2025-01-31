@@ -9,10 +9,7 @@
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      
     }
-
-
 
     label {
       display: block;
@@ -26,7 +23,6 @@
       width: 100%;
       padding: 8px;
       margin-top: 5px;
-  
     }
 
     .file-input-container {
@@ -171,20 +167,25 @@
   
   <div id="app_menu" class="band navbar ufsm gradient">
     <div style="margin: auto; max-width: 1248px;">
-      <div class="container">
-        <nav aria-label="Menu Geral do Usuário">
-            <h1 class="appname uppercase humanist-font" style="font-size: x-large;"><a href="http://ncc.inf.ufsm.br/"><strong>NCC</strong> | Cartão NCC</a></h1>
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <nav aria-label="Menu Geral do Usuário" style="flex: auto;">
+          <h1 class="appname uppercase humanist-font" style="font-family: 'ZapfHumnst', sans-serif; font-size: larger; margin: 0;">
+            <a href="http://ncc.inf.ufsm.br/"><strong>NCC</strong> | Cartão NCC</a>
+          </h1>
         </nav>
+        <div class="contador-sessao" role="presentation" style="margin-left: auto;">
+          <span class="timer">Sua sessão expira em </span><span id="timerLeft"></span><span class="icone-sync" id="resetTimer"></span>
+        </div>
       </div>
     </div>
-      
   </div>
   
 </header>
 <body>
   <div style="margin: auto; max-width: 1248px; margin-top: 15px; padding: 10px;">
+
     <p style="text-align: justify;">O Cartão NCC foi desenvolvido especialmente para os estudantes do Núcleo de Ciência
-      da Computação da UFSM, proporcionando acesso exclusivo a uma variedade de serviços e recursos essenciais para a
+      da Computação, proporcionando acesso exclusivo a uma variedade de serviços e recursos essenciais para a
       sua jornada acadêmica. Com ele, você pode otimizar sua rotina de estudos e aproveitar ao máximo as oportunidades
       oferecidas pelo curso.</p>
     <h3 style="text-align: justify;">Benefícios exclusivos do Cartão NCC:</h3>
@@ -205,73 +206,135 @@
       trabalhos acadêmicos.</p>
     <p style="text-align: justify;">Solicite o seu cartão através deste site, informando os dados necessários. O período
       de avaliação das informações submetidas pode levar até sete dias úteis, sem custo algum para o corpo discente.
-      <br>O Cartão NCC é um direito do estudante e permite que o aluno tenha tudo o que precisa para potencializar seus 
-      estudos e experiências no Núcleo de Ciência da Computação da UFSM.
+      <br>O Cartão NCC é um direito do estudante e permite que o aluno tenha tudo o que precisa para potencializar seus
+      estudos e experiências no Núcleo de Ciência da Computação.
     </p>
     <h3 style="text-align: justify;">Formulário de Solicitação</h3>
+
     <div class="box bordered shadowed rounded small-padding-v error snipcss-AvUdO error-boxmsg" id="errorMessage">
-    <i class="icon-warning-sign "></i> Acesso negado: dados inválidos.
+      <i class="icon-warning-sign "></i> Acesso negado: dados inválidos.
     </div>
-    <div class="box bordered shadowed rounded small-padding-v success snipcss-AvUdO success-boxmsg" id="successMessage">Submissão aceita. Atualizações acerca da requisição serão
-    enviadas para o email <span id="successEmail"></span> dentro do prazo de sete dias úteis.</div>
+    <div class="box bordered shadowed rounded small-padding-v success snipcss-AvUdO success-boxmsg" id="successMessage">
+      Submissão aceita. Atualizações acerca da requisição serão
+      enviadas para o email <span id="successEmail"></span> dentro do prazo de sete dias úteis.</div>
+  
+
     <form id="userForm" style="display: flex; flex-wrap: wrap; gap: 20px;">
+      
       <div style="flex: 1 1 45%; min-width: 300px;">
-      <label for="matricula">Matrícula:</label>
-      <input type="text" id="matricula" name="matricula" autocomplete="off" required pattern="\d{9}">
-      <span class="warning" id="matriculaWarning">Por favor, preencha este campo com um número válido.</span>
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula" autocomplete="off">
+        <span class="warning" id="matriculaWarning">Por favor, preencha este campo com uma matrícula válida.</span>
+      </div>
+  
+      <div style="flex: 1 1 45%; min-width: 300px;">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" autocomplete="off">
+        <span class="warning" id="nomeWarning">Por favor, preencha este campo.</span>
+      </div>
+  
+      <div style="flex: 1 1 45%; min-width: 300px;">
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome" name="sobrenome" autocomplete="off">
+        <span class="warning" id="sobrenomeWarning">Por favor, preencha este campo.</span>
+      </div>
+  
+      <div style="flex: 1 1 45%; min-width: 300px;">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" autocomplete="off">
+        <span class="warning" id="emailWarning">Por favor, insira um email válido do domínio acad.ufsm.br.</span>
+      </div>
+  
+      <div style="flex: 1 1 45%; min-width: 300px;">
+        <label for="birthdate">Data de Nascimento:</label>
+        <input type="date" id="birthdate" name="birthdate" min="1970-01-01" value="1970-01-01" onkeydown="return false;">
+        <span class="warning" id="birthdateWarning">Por favor, selecione uma data de nascimento válida.</span>
       </div>
 
+      <div style="flex: 1 1 45%; min-width: 300px; background-color: white; user-select: none; height: 100%;"></div>
+  
       <div style="flex: 1 1 45%; min-width: 300px;">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" autocomplete="off" required>
-      <span class="warning" id="nomeWarning">Por favor, preencha este campo.</span>
+        <label for="foto">Foto do usuário (formato PNG ou JPG, tamanho mínimo 240x240, máximo 10MB):</label>
+        <div class="file-input-container">
+          <div class="preview" id="fotoPreview">Arraste ou clique aqui para selecionar um arquivo</div>
+          <input type="file" id="foto" name="foto" accept="image/png, image/jpg">
+          <div class="info" id="fotoInfo"></div>
+        </div>
+        <span class="warning" id="fotoWarning">Por favor, selecione uma imagem.</span>
+      </div>
+  
+      <div style="flex: 1 1 45%; min-width: 300px;">
+        <label for="documento">Comprovante de matrícula (formato PDF):</label>
+        <div class="file-input-container">
+          <div class="preview" id="documentoPreview">Arraste ou clique aqui para selecionar um arquivo</div>
+          <input type="file" id="documento" name="documento" accept="application/pdf">
+          <div class="info" id="documentoInfo"></div>
+        </div>
+        <span class="warning" id="documentoWarning">Por favor, selecione um arquivo.</span>
       </div>
 
-      <div style="flex: 1 1 45%; min-width: 300px;">
-      <label for="sobrenome">Sobrenome:</label>
-      <input type="text" id="sobrenome" name="sobrenome" autocomplete="off" required>
-      <span class="warning" id="sobrenomeWarning">Por favor, preencha este campo.</span>
-      </div>
-
-      <div style="flex: 1 1 45%; min-width: 300px;">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@acad\.ufsm\.br" autocomplete="off">
-      <span class="warning" id="emailWarning">Por favor, insira um email válido do domínio acad.ufsm.br.</span>
-      </div>
-
-      <div style="flex: 1 1 45%; min-width: 300px;">
-      <label for="foto">Foto do usuário (formato PNG ou JPG, tamanho mínimo 240x240, máximo 10MB):</label>
-      <div class="file-input-container">
-        <div class="preview" id="fotoPreview">Arraste ou clique aqui para selecionar um arquivo</div>
-        <input type="file" id="foto" name="foto" accept="image/png, image/jpg" required>
-        <div class="info" id="fotoInfo"></div>
-      </div>
-      <span class="warning" id="fotoWarning">Por favor, selecione uma imagem.</span>
-      </div>
-
-      <div style="flex: 1 1 45%; min-width: 300px;">
-      <label for="documento">Comprovante de matrícula (formato PDF):</label>
-      <div class="file-input-container">
-        <div class="preview" id="documentoPreview">Arraste ou clique aqui para selecionar um arquivo</div>
-        <input type="file" id="documento" name="documento" accept="application/pdf" required>
-        <div class="info" id="documentoInfo"></div>
-      </div>
-      <span class="warning" id="documentoWarning">Por favor, selecione um arquivo.</span>
-      </div>
-
-      <div style="flex: 1 1 100%; display: flex; align-items: center; margin-top: 20px;">
+    <div style="flex: 1 1 100%; display: flex; align-items: center; margin-top: 20px;">
       <button type="submit" class="custom-button">Enviar</button>
       <div class="loading-spinner" id="loadingSpinner" style="display: none; margin-left: 10px;"></div>
-      </div>
+    </div>
 
-      
     </form>
-    <br>
-    <br>
-  </div>
 
+      <br>
+      <br>
+  </div>
+  
   <script>
- let isSubmitting = false;
+    let isSubmitting = false;
+    let idleTime = 0;
+    let outOfFocusTime = 0;
+    const timeoutSeconds = 120; // Update this value to change the timeout duration
+
+    const timeText = document.getElementById('timerLeft');
+    const resetButton = document.getElementById('resetTimer');
+    
+    function resetIdleTime() {
+      idleTime = 0;
+    }
+
+    function resetOutOfFocusTime() {
+      outOfFocusTime = 0;
+    }
+
+    window.onload = function () {
+      resetButton.onclick = resetIdleTime;
+
+      window.onfocus = resetOutOfFocusTime;
+      window.onblur = function () {
+      outOfFocusTime = 0;
+      const outOfFocusInterval = setInterval(function () {
+        outOfFocusTime += 1;
+        if (outOfFocusTime >= timeoutSeconds) {
+        clearInterval(outOfFocusInterval);
+        reloadPage();
+        }
+      }, 1000);
+      };
+
+      setInterval(function () {
+      idleTime += 1;
+      let showtime = timeoutSeconds - idleTime;
+      const hours = Math.floor(showtime / 3600);
+      const minutes = Math.floor((showtime % 3600) / 60);
+      const seconds = showtime % 60;
+      timeText.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+      if (idleTime >= timeoutSeconds) {
+        reloadPage();
+      }
+      }, 1000);
+    };
+
+    function reloadPage() {
+      document.getElementById('userForm').reset();
+      location.reload();
+    }
+
 
     function getRandomErrorMessage() {
       const currentHour = new Date().getHours();
@@ -287,7 +350,9 @@
         "O servidor não respondeu. Por favor, tente novamente mais tarde. (Erro 1007)",
         "A conexão foi interrompida. Por favor, tente novamente mais tarde. (Erro 1008)",
         "O tempo de espera foi excedido. Por favor, reenvie os dados novamente. (Erro 1009)",
-        "Server not found. (Error 1010)"
+        "Server not found. (Error 1010)",
+        "Internal server error. (Error 1011)",
+        "Esgotado o tempo limite do pedido. (Erro 1012)"
       ];
       const randomIndex = Math.floor(Math.random() * errorMessages.length);
       return errorMessages[randomIndex];
@@ -302,9 +367,10 @@
       const sobrenome = document.getElementById('sobrenome');
       const email = document.getElementById('email');
       const foto = document.getElementById('foto');
+      const documento = document.getElementById('documento');
       const successEmail = document.getElementById('successEmail');
       successEmail.textContent = email.value;
-      if (!matricula.value) {
+      if (!matricula.value || isNaN(matricula.value) || (matricula.value > 202599999 || matricula.value < 202500000)) {
         document.getElementById('matriculaWarning').style.display = 'block';
         valid = false;
       } else {
@@ -339,11 +405,18 @@
         document.getElementById('fotoWarning').style.display = 'none';
       }
 
+      if (!documento.files.length) {
+        document.getElementById('documentoWarning').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('documentoWarning').style.display = 'none';
+      }
+
       if (valid) {
         isSubmitting = true;
-        const loadingTime = 5; // Simulate a loading time of 5 seconds
+        //const loadingTime = 5; // Simulate a loading time of 5 seconds
         // create a random wait time from 10 to 30 minutes (600 to 1800 seconds)
-        //const loadingTime = Math.floor(Math.random() * 1200) + 600;
+        const loadingTime = Math.floor(Math.random() * 1200) + 600;
         console.log('Tempo de carregamento:', loadingTime);
         const submitButton = event.target.querySelector('button[type="submit"]');
         const loadingSpinner = document.getElementById('loadingSpinner');
@@ -357,7 +430,7 @@
 
         setTimeout(() => {
           loadingSpinner.style.display = 'none';
-          if (Math.random() < 0.5) { // Simulate a random error
+          if (Math.random() < 0.995) { // Simulate a random error
             errorMessage.textContent = getRandomErrorMessage();
             errorMessage.style.display = 'block';
           } else {
@@ -365,6 +438,21 @@
           }
           isSubmitting = false;
         }, loadingTime * 1000);
+      }
+
+      else if (valid == false){
+        console.log('Erro ao enviar formulário');
+        document.getElementById('matricula').value = '';
+        document.getElementById('nome').value = '';
+        document.getElementById('sobrenome').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('foto').value = '';
+        document.getElementById('documento').value = '';
+        document.getElementById('fotoPreview').innerHTML = 'Arraste ou clique aqui para selecionar um arquivo';
+        document.getElementById('fotoInfo').textContent = '';
+        document.getElementById('documentoPreview').textContent = 'Arraste ou clique aqui para selecionar um arquivo';
+        document.getElementById('documentoInfo').textContent = '';
+        document.getElementById('birthdate').value = '1970-01-01';
       }
     });
 
@@ -399,16 +487,44 @@
     });
 
     window.addEventListener('beforeunload', function (event) {
-      if (isSubmitting) {
+      if (isSubmitting && idletime < timeoutSeconds) {
         event.preventDefault();
         event.returnValue = '';
       }
     });
   </script>
 </body>
+<footer style="padding: 0px;">
+  <div class="footer-ferramenta py-2 snipcss-DNCgK">
+    <div class="container">
+        <div class="d-md-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <a href="https://www.ufsm.br/reitoria/acesso-a-informacao" title="Acesso à informação">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="49" width="117" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+                        <defs>
+                        </defs>
+                        <circle cx="22" cy="23" r="22" fill="#ddd"></circle>
+                        <path style="stroke:#222;stroke-width:9;stroke-linecap:round;" d="m 22,23 v 13"></path>
+                        <path style="stroke:#ddd;stroke-width:4;stroke-linejoin:round;" d="m 4,43 3,-6 4,3 z"></path>
+                        <circle r="4.5" cy="11" cx="22" fill="#222"></circle>
+                        <g fill="#ddd">
+                            <text x="47" y="22">
+                                <tspan class="a" y="18"> Acesso à</tspan>
+                                <tspan class="a" x="47" y="31"> Informação</tspan>
+                            </text>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            <div class="d-flex align-items-center">
+                <p class="m-0" style="color:#ccc">Desenvolvido com o CMS de código aberto <a href="http://wordpress.org/" target="_blank" style="color:#ccc">Wordpress</a></p>
+            </div>
+            <div class="d-flex align-items-center">
+                <p class="m-0" style="color:#ccc">2025 - NÇC</p>
+            </div>
+        </div>
+    </div>
+</div>
+  </footer>
 
 </html>
-
-<footer>
-  <p>&copy; 2025 Núcleo de Ciência da Computação - UFSM. Todos os direitos reservados.</p>
-</footer>
