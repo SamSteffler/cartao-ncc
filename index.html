@@ -471,7 +471,7 @@
     });
 
     window.addEventListener('beforeunload', function (event) {
-      if (isSubmitting && idletime < timeoutSeconds) {
+      if (isSubmitting) {
         event.preventDefault();
         event.returnValue = '';
       }
