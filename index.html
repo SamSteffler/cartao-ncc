@@ -288,7 +288,6 @@
   <script>
     let isSubmitting = false;
     let idleTime = 0;
-    let outOfFocusTime = 0;
     const timeoutSeconds = 120; // Update this value to change the timeout duration
 
     const timeText = document.getElementById('timerLeft');
@@ -298,24 +297,8 @@
       idleTime = 0;
     }
 
-    function resetOutOfFocusTime() {
-      outOfFocusTime = 0;
-    }
-
     window.onload = function () {
       resetButton.onclick = resetIdleTime;
-
-      window.onfocus = resetOutOfFocusTime;
-      window.onblur = function () {
-      outOfFocusTime = 0;
-      const outOfFocusInterval = setInterval(function () {
-        outOfFocusTime += 1;
-        if (outOfFocusTime >= timeoutSeconds) {
-        clearInterval(outOfFocusInterval);
-        reloadPage();
-        }
-      }, 1000);
-      };
 
       setInterval(function () {
       idleTime += 1;
