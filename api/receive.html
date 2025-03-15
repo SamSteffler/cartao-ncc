@@ -28,14 +28,14 @@
 
             console.log("Enviando:", dadosAleatorios);
             iframe.postMessage(dadosAleatorios, "*");
-
+            console.log("Dados enviados!");
             // Escutar resposta
             window.addEventListener("message", (event) => {
                 if (event.data === "OK") {
-                    console.log("Resposta do servidor:", event.data);
+                    console.log("Resposta do servidori:", event.data);
                 }
             }, { once: true });
         });
     </script>
 </body>
-</html>
+</html> 

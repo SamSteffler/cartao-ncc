@@ -10,17 +10,19 @@
     <p>Esperando dados...</p>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-          window.addEventListener("message", (event) => {
-              if (typeof event.data === "string") {
-                  console.log("Dado recebido:", event.data); // Imprime os dados no console
-                  document.querySelector("p").textContent = "Dados recebidos!";
+        console.log("token.html carregado e aguardando mensagens...");
 
-                  // Enviar resposta de volta
-                  event.source.postMessage("OK", event.origin);
-              }
-          });
-      });
-  </script>
+        window.addEventListener("message", (event) => {
+            console.log("Mensagem recebida!", event); // Verifica qualquer mensagem recebida
+
+            if (typeof event.data === "string") {
+                console.log("Dado recebido:", event.data); // Deve imprimir a string aleatória
+                document.querySelector("p").textContent = "Dados recebidos!";
+
+                // Enviar resposta de volta
+                event.source.postMessage("OK", event.origin);
+            }
+        });
+    </script>
 </body>
 </html>
