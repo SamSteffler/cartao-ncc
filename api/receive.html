@@ -1,33 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Receive POST Data</title>
-</head>
-<body>
-  <h1>POST Data Receiver</h1>
-  <form action="server-script.php" method="POST">
-    <label for="data">Data:</label>
-    <input type="text" id="data" name="data">
-    <button type="submit">Submit</button>
-  </form>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (window.location.search) {
-        const params = new URLSearchParams(window.location.search);
-        for (const [key, value] of params.entries()) {
-          console.log(`${key}: ${value}`);
-        }
-      }
-    });
-
-    window.addEventListener('message', function(event) {
-      if (event.data && event.data.method === 'POST') {
-        console.log('Received POST data:', event.data);
-      }
-    });
-  </script>
-</body>
-</html>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Respond with "OK"
+  echo "OK";
+} else {
+  // Respond with a 405 Method Not Allowed if not a POST request
+  http_response_code(405);
+  echo "Method Not Allowed";
+}
+?>
