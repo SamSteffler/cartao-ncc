@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receive POST Data</title>
+</head>
+<body>
+  <h1>POST Data Receiver</h1>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        for (const [key, value] of params.entries()) {
+          console.log(`${key}: ${value}`);
+        }
+      }
+    });
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.method === 'POST') {
+        console.log('Received POST data:', event.data);
+      }
+    });
+  </script>
+</body>
+</html>
