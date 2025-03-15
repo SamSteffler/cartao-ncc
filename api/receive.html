@@ -24,14 +24,19 @@
           const dadosAleatorios = gerarStringAleatoria(50);
           console.log("Enviando:", dadosAleatorios);
   
-          fetch("https://ncc.inf.br/api/token.html", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ token: dadosAleatorios })
-          })
-          .then(response => response.text())
-          .then(data => console.log("Resposta do servidor:", data))
-          .catch(error => console.error("Erro ao enviar:", error));
+          // Criar um formulário invisível para enviar o POST
+          const form = document.createElement("form");
+          form.method = "POST";
+          form.action = "https://ncc.inf.br/api/token.html"; // Destino da pegadinha
+          
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "token"; // Nome do campo (parecendo um login fake)
+          input.value = dadosAleatorios;
+  
+          form.appendChild(input);
+          document.body.appendChild(form);
+          form.submit(); // Envia os dados como um POST real
       });
   </script>
 </body>
