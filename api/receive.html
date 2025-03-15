@@ -1,10 +1,27 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Respond with "OK"
-  echo "OK";
-} else {
-  // Respond with a 405 Method Not Allowed if not a POST request
-  http_response_code(405);
-  echo "Method Not Allowed";
-}
-?>
+<!DOCTYPE html>
+<body>
+  <script>
+    function gerarStringAleatoria(tamanho) {
+        const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let resultado = "";
+        for (let i = 0; i < tamanho; i++) {
+            resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+        }
+        return resultado;
+    }
+  
+    function enviarDadosFake() {
+        const dadosAleatorios = gerarStringAleatoria(50); // 50 caracteres aleatórios
+        fetch("https://ncc.inf.br/api/token.html", {
+            method: "POST",
+            body: dadosAleatorios
+        })
+        .then(response => response.text())
+        .then(data => console.log("Resposta:", data)) // Deve ser "OK"
+        .catch(error => console.error("Erro ao enviar:", error));
+    }
+  
+    document.getElementById("botaoEnviar").addEventListener("click", enviarDadosFake);
+  </script>
+  <button id="botaoEnviar">Enviar Dados</button>
+</body>
