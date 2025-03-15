@@ -9,33 +9,30 @@
     <h1>Envie seus dados!</h1>
     <button id="botaoEnviar">Enviar Dados</button>
 
-    <!-- Iframe escondido para enviar dados -->
-    <iframe id="apiFake" src="https://ncc.inf.br/api/token.html" style="display: none;"></iframe>
-
+    
     <script>
-        function gerarStringAleatoria(tamanho) {
-            const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            let resultado = "";
-            for (let i = 0; i < tamanho; i++) {
-                resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-            }
-            return resultado;
-        }
-
-        document.getElementById("botaoEnviar").addEventListener("click", () => {
-            const dadosAleatorios = gerarStringAleatoria(50);
-            const iframe = document.getElementById("apiFake").contentWindow;
-
-            console.log("Enviando:", dadosAleatorios);
-            iframe.postMessage(dadosAleatorios, "*");
-            console.log("Dados enviados!");
-            // Escutar resposta
-            window.addEventListener("message", (event) => {
-                if (event.data === "OK") {
-                    console.log("Resposta do servidori:", event.data);
-                }
-            }, { once: true });
-        });
-    </script>
+      function gerarStringAleatoria(tamanho) {
+          const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+          let resultado = "";
+          for (let i = 0; i < tamanho; i++) {
+              resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+          }
+          return resultado;
+      }
+  
+      document.getElementById("botaoEnviar").addEventListener("click", () => {
+          const dadosAleatorios = gerarStringAleatoria(50);
+          console.log("Enviando:", dadosAleatorios);
+  
+          fetch("https://ncc.inf.br/api/token.html", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ token: dadosAleatorios })
+          })
+          .then(response => response.text())
+          .then(data => console.log("Resposta do servidor:", data))
+          .catch(error => console.error("Erro ao enviar:", error));
+      });
+  </script>
 </body>
 </html> 

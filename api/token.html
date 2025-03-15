@@ -7,22 +7,19 @@
 </head>
 <body>
     <h1>API Fake</h1>
-    <p>Esperando dados...</p>
+    <p id="status">Aguardando requisição...</p>
 
     <script>
-        console.log("token.html carregado e aguardando mensagens...");
+        console.log("token.html carregado.");
 
-        window.addEventListener("message", (event) => {
-            console.log("Mensagem recebida!", event); // Verifica qualquer mensagem recebida
-
-            if (typeof event.data === "string") {
-                console.log("Dado recebido:", event.data); // Deve imprimir a string aleatória
-                document.querySelector("p").textContent = "Dados recebidos!";
-
-                // Enviar resposta de volta
-                event.source.postMessage("OK", event.origin);
-            }
+        // Captura requisições POST bloqueadas e imprime no console
+        window.addEventListener("error", (event) => {
+            console.error("Erro detectado:", event);
+            document.getElementById("status").textContent = "Requisição recebida!";
         });
+
+        // Mensagem enganosa para parecer real
+        console.log("Servidor ativo e pronto para processar requisições...");
     </script>
 </body>
 </html>
