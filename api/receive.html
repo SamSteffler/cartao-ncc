@@ -7,6 +7,12 @@
 </head>
 <body>
   <h1>POST Data Receiver</h1>
+  <form action="server-script.php" method="POST">
+    <label for="data">Data:</label>
+    <input type="text" id="data" name="data">
+    <button type="submit">Submit</button>
+  </form>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       if (window.location.search) {
