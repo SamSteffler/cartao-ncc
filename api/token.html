@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Fake</title>
-    <br>
 </head>
 <body>
-    <script>
-        document.body.innerHTML = "Acesso inválido"; // Caso alguém tente acessar diretamente
+    <h1>API Fake</h1>
+    <p>Esperando dados...</p>
 
+    <script>
         window.addEventListener("message", (event) => {
-            if (event.data === "enviar") {
+            if (typeof event.data === "string") {
+                console.log("Dado recebido:", event.data);
+                document.querySelector("p").textContent = "Dados recebidos!";
+
+                // Enviar resposta de volta
                 event.source.postMessage("OK", event.origin);
             }
         });
