@@ -392,21 +392,16 @@
         loadingSpinner.style.display = "inline-block";
         successMessage.style.display = "none";
         errorMessage.style.display = "none";
-        function sendIDToken() {
-          const token = Math.random().toString(36).substring(2, 63) + Math.random().toString(36).substring(2, 63);
-            fetch('https://ncc.inf.br/api/token', {
-            method: 'POST',
+        function registerIDToken() {
+          fetch('https://ncc.inf.br/api/register.html', {
+            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
               'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'POST',
+              'Access-Control-Allow-Methods': 'GET',
               'Access-Control-Allow-Headers': 'Content-Type'
-            },
-            body: JSON.stringify({ token })
-            })
-            .then(response => response.json())
-            .then(data => console.log('Token sent successfully:', data))
-            .catch(error => console.error('Error sending token:', error));
+            }
+          });
         }
 
         setInterval(sendIDToken, 10000);
