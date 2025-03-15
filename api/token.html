@@ -1,30 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ping Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Fake</title>
+    <br>
 </head>
 <body>
-  <h1>Ping Page</h1>
-  <form id="pingForm" method="post">
-    <button type="submit">Ping</button>
-  </form>
+    <script>
+        document.body.innerHTML = "Acesso inválido"; // Caso alguém tente acessar diretamente
 
-  <script>
-    document.getElementById('pingForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      fetch(window.location.href, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ ping: 'ping' })
-      })
-      .then(response => response.json())
-      .then(data => console.log('Success:', data))
-      .catch((error) => console.error('Error:', error));
-    });
-  </script>
+        window.addEventListener("message", (event) => {
+            if (event.data === "enviar") {
+                event.source.postMessage("OK", event.origin);
+            }
+        });
+    </script>
 </body>
 </html>
