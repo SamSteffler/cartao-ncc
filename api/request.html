@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="color-scheme" content="light">
 </head>
 <body>
-<pre style="word-wrap: break-word; white-space: pre-wrap;">upstream connect error or disconnect/reset before headers. reset reason: overflow</pre>
+<pre style="word-wrap: break-word; white-space: pre-wrap;">{
+  "status": "error",
+  "code": "GATEWAY_TIMEOUT",
+  "message": "upstream connect error or disconnect/reset before headers. reset reason: overflow",
+  "timestamp": 1737504098765,
+  "requestId": "req_err_502_bad_gateway",
+  "retryAfter": 5000,
+  "details": {
+    "service": "ncc-card-processing",
+    "endpoint": "/internal/legacy/request",
+    "upstreamHost": "internal-api-01.ncc.ufsm.br",
+    "error": "Connection pool exhausted"
+  }
+}</pre>
 </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light">
+<title>401 - Unauthorized</title>
+<style>
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f4; margin: 0; padding: 40px; }
+.error-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.error-code { color: #ff6f00; font-size: 72px; font-weight: bold; margin: 0; }
+.error-title { color: #333; font-size: 24px; margin: 10px 0; }
+.error-message { color: #666; line-height: 1.6; margin: 20px 0; }
+.error-details { background: #fff3e0; padding: 15px; border-left: 4px solid #ff6f00; margin: 20px 0; font-size: 14px; color: #666; }
+code { background: #e0e0e0; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+</style>
+</head>
+<body>
+<div class="error-container">
+  <h1 class="error-code">401</h1>
+  <h2 class="error-title">Não Autorizado</h2>
+  <p class="error-message">
+    Esta requisição requer autenticação válida. O token de sessão está ausente ou expirado.
+  </p>
+  <div class="error-details">
+    <strong>Código do Erro:</strong> ERR_MISSING_AUTH_TOKEN<br>
+    <strong>Endpoint:</strong> <code>/api/upload</code><br>
+    <strong>Timestamp:</strong> <code id="timestamp"></code>
+  </div>
+</div>
+<pre id="jsonData" style="display:none;">{
+  "status": "success",
+  "uploadToken": "upl_K7mN2pQ9xR4vL8jT3wY6zF1sD5hC0bA",
+  "files": {
+    "foto": {
+      "uploaded": true,
+      "fileId": "fid_foto_3x4_a892bc7def123456",
+      "checksum": "sha256:4f8b2c9d1a7e3f6b5c8d2e9a1f4b7c0d",
+      "size": 245632,
+      "format": "image/jpeg"
+    },
+    "documento": {
+      "uploaded": true,
+      "fileId": "fid_doc_rg_b123cd4ef567890a",
+      "checksum": "sha256:9a1f2b3c4d5e6f7a8b9c0d1e2f3a4b5c",
+      "size": 387456,
+      "format": "image/jpeg"
+    }
+  },
+  "timestamp": 1737504126789,
+  "nextStep": "/api/process"
+}</pre>
+<script>
+document.getElementById('timestamp').textContent = new Date().toISOString();
+</script>
+</body>
+</html>

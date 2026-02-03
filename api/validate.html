@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light">
+<title>403 - Forbidden</title>
+<style>
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f4; margin: 0; padding: 40px; }
+.error-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.error-code { color: #d32f2f; font-size: 72px; font-weight: bold; margin: 0; }
+.error-title { color: #333; font-size: 24px; margin: 10px 0; }
+.error-message { color: #666; line-height: 1.6; margin: 20px 0; }
+.error-details { background: #f9f9f9; padding: 15px; border-left: 4px solid #d32f2f; margin: 20px 0; font-size: 14px; color: #666; }
+code { background: #e0e0e0; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+#jsonData { display: none; }
+</style>
+</head>
+<body>
+<div class="error-container">
+  <h1 class="error-code">403</h1>
+  <h2 class="error-title">Acesso Negado</h2>
+  <p class="error-message">
+    Você não tem permissão para acessar este recurso diretamente. 
+    Este endpoint é restrito a requisições autenticadas do sistema.
+  </p>
+  <div class="error-details">
+    <strong>Código do Erro:</strong> ERR_DIRECT_ACCESS_FORBIDDEN<br>
+    <strong>Endpoint:</strong> <code>/api/validate</code><br>
+    <strong>Método Permitido:</strong> POST (com token de autenticação)<br>
+    <strong>Timestamp:</strong> <code id="timestamp"></code>
+  </div>
+  <p class="error-message" style="font-size: 14px;">
+    Se você acredita que isto é um erro, entre em contato com o administrador do sistema.
+  </p>
+</div>
+<pre id="jsonData" style="display:none;">{
+  "status": "success",
+  "validationToken": "vld_9k2mP8xQ4nL7jR3wZ6tY1sF5hD0cA9bN",
+  "sessionId": "sess_2025_ncc_47a89bc12ef3d456",
+  "timestamp": 1737504123456,
+  "checks": {
+    "matriculaFormat": true,
+    "emailDomain": true,
+    "requiredFields": true,
+    "eulaAcceptance": true
+  },
+  "nextStep": "/api/upload",
+  "expiresIn": 300
+}</pre>
+<script>
+document.getElementById('timestamp').textContent = new Date().toISOString();
+</script>
+</body>
+</html>
